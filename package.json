@@ -1,0 +1,22 @@
+{
+  "name": "home_assignment",
+  "version": "1.0.0",
+  "description": "My project",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodejs main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aviadblu/home_assignment.git"
+  },
+  "dependencies": {
+	"express": "~4.0.0",
+    "mongodb": "~2.0",
+    "mongoose": "~3.6.13"
+  },
+  "author": "Aviad Blumefeld",
+  "bugs": {
+    "url": "https://github.com/aviadblu/home_assignment/issues"
+  }
+}
