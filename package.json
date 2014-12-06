@@ -11,9 +11,11 @@
     "url": "https://github.com/aviadblu/home_assignment.git"
   },
   "dependencies": {
+	"body-parser": "~1.9.2",
 	"express": "~4.0.0",
-    "mongodb": "~2.0",
-    "mongoose": "~3.6.13"
+	"mongoose"   : "~3.6.13",
+	"morgan": "^1.4.1",
+    "mongodb": "~2.0"
   },
   "author": "Aviad Blumefeld",
   "bugs": {
