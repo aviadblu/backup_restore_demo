@@ -19,7 +19,7 @@ module.exports = (function() {
         }
 
         if (action == "restore") {
-            contacts.restore_snapshot(req.body.timestamp, function(err, data) {
+            contacts.restore_snapshot(req.body.timestamp, true, function(err, data) {
                 //TODO
                 if (err)
                     res.send(err);
@@ -30,7 +30,7 @@ module.exports = (function() {
     });
 
     snapshots.get('/all', function(req, res) {
-        contacts.getall_snapshots(req.body, function(data) {
+        contacts.getall_changes(req.body, function(data) {
             res.send(data);
         });
     });

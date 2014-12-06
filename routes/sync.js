@@ -8,7 +8,7 @@ module.exports = (function() {
     sync.post('/', function(req, res) {
         var action = req.body.action;
         if (action == "insert") {
-            contacts.insert(req.body.obj, function(err) {
+            contacts.insert(req.body.obj, true, function(err) {
                 //TODO
                 if (err)
                     res.send(err);
@@ -19,7 +19,7 @@ module.exports = (function() {
             });
         }
         if (action == "update") {
-            contacts.update(req.body.id, req.body.obj, function(err) {
+            contacts.update(req.body.id, req.body.obj, true, function(err) {
                 //TODO 
                 if (err)
                     res.send(err);
@@ -30,7 +30,7 @@ module.exports = (function() {
             });
         }
         if (action == "remove") {
-            contacts.remove(req.body.id, function(err) {
+            contacts.remove(req.body.id, true, function(err) {
                 //TODO 
                 if (err)
                     res.send(err);
