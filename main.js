@@ -14,21 +14,22 @@ var snapshots = require('./routes/snapshots');
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use('/sync', sync);
 app.use('/snapshots', snapshots);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-	console.log("error handler");
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
+    console.log("error handler");
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 module.exports = app;
 
-
-console.log("app started 8080");
+console.log("App run on 8080");
 app.listen(8080);
