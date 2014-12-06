@@ -24,7 +24,7 @@ var snapshots_list_model = mongoose.model('SnapshotsList', SnapshotsListSchema);
 
 
 ///////////////////////////////////////////////////////////////
-var getTimestamp = function(){
+var getTimestamp = function() {
 	var timeZone = "Asia/Jerusalem";
 	// get timestamp in sec
 	var now = new time.Date();
@@ -156,15 +156,32 @@ var contacts = {
 	    });
   	},
   	restore_snapshot:function(timestamp,callback) {
-  		snapshots_list_model.findOne({ timestamp: {$lt: timestamp}}, function (err, snapshot){
-		  // doc is a Document
+  		// check if it's old the 30 days:
+  		var time_gap = getTimestamp() - timestamp;
+  		console.log(time_gap);
+  		
+  		if(time_gap<0) {
+  			callback(false,{error: "I can not predict the future"});
+  			return;
+  		}
+  		
+  		if((time_gap/3600/24)>30) {
+  			callback(false,{error: "Snapshots avaliable only for 30 days!"});
+  			return;
+  		}
+  		//callback(false,{error: "no snapshot available"});
+  		
+  		snapshots_list_model.find({ timestamp: {$gt: timestamp}}, function (err, snapshots){
+  			
 		  if(err) {
 	    		callback(err);
 	    	}
 	    	else {
-	    		if(snapshot) {
+	    		// if restore point exist, load from snapshots
+	    		if(snapshots[0]) {
+	    			var snapshot=snapshots[0];
 	    			// load snapshot:
-	    			console.log("snapshot " + snapshot.timestamp + " restored");
+	    			console.log("Snapshot " + snapshot.timestamp + " restored");
 	    			snapshots_model.find({timestamp:snapshot.timestamp},function(err, contacts_list) {
 			            if (err) {
 			                callback(err);
@@ -175,11 +192,16 @@ var contacts = {
 			        });
 	    		}
 	    		else {
-	    			console.log("no snapshot avalibale");
-	    			callback(false,{error: "no snapshot avalibale"});
+	    		// if restore point does not exist, load from current
+	    			console.log("No snapshot avaliable, restoring current");
+	    			contacts_model.find(function(err, contacts_list) {
+			            if (err)
+			                callback(err);
+			            callback(false,contacts_list);
+			        });
 	    		}
 	    	}
-		});
+		}).sort( { timestamp: -1} ).limit(1); // sort by timestamp to get the closest and smallest snapshot
   	}
 };
 
