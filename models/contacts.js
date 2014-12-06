@@ -138,7 +138,7 @@ var contacts = {
                     contact_obj: obj
                 };
                 track_changes_model.create(track_changes_object, function(err) {})
-                    /////////////////
+                /////////////////
             }
 
             if (err)
@@ -233,7 +233,6 @@ var contacts = {
         console.log("restoring to " + timestamp);
         // check if it's old the 30 days:
         var time_gap = getTimestamp() - timestamp;
-        console.log(time_gap);
 
         if (time_gap < 0) {
             callback(false, {

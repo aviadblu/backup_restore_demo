@@ -31,14 +31,11 @@ request: {action:"update", contact_id} <br>
 http://ec2-54-149-42-58.us-west-2.compute.amazonaws.com:8080/sync/all <br>
 
 <h4><u>Snapshots POST methods:</u></h4>
-1) Remove Snapshot: <br>
-http://ec2-54-149-42-58.us-west-2.compute.amazonaws.com:8080/snapshots <br>
-request: {action:"remove_snaphot",timestamp: "some timestamp, e.g. 1317070690"} <br>
 
-2) Restore Snapshot: <br>
+1) Restore Snapshot: <br>
 http://ec2-54-149-42-58.us-west-2.compute.amazonaws.com:8080/snapshots <br>
 request: {action:"restore",timestamp: "some timestamp, e.g. 1317070690"} <br>
 
 <h4><u>Snapshots GET methods:</u></h4>
-1) Get all Snapshots sata: <br>
+1) Get all Snapshots data: <br>
 http://ec2-54-149-42-58.us-west-2.compute.amazonaws.com:8080/snapshots/all <br>
