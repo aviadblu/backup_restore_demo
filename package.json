@@ -15,7 +15,8 @@
 	"express": "~4.0.0",
 	"mongoose"   : "~3.6.13",
 	"morgan": "^1.4.1",
-    "mongodb": "~2.0"
+    "mongodb": "~2.0",
+    "time": "0.11.0"
   },
   "author": "Aviad Blumefeld",
   "bugs": {
